@@ -1,40 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> cuaca </title>
-    </head>
-    <body>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        cuaca : <p id = "lokasi"> </p>
-        <hr>
-        <div id ="tampilan"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaca</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>🌤️ Aplikasi Cuaca</h2>
 
-        <script>
-            const urlapi ="http://api.weatherapi.com/v1/current.json?key=8711f592bdc54ba7bb831031250710&q=yogyakarta&aqi=no";
-            $.ajax({
-                url : urlapi,
-                method : "GET",
-                success : function(data){
-                    console.log(data);
-                    const v = document.getElementById("tampilan");
-                    const l = document.getElementById("lokasi");
-                    let suhu = data.current.temp_c;
-                    let lokasi = data.location.name;
-                    v.innerHTML = suhu;
-                    l.innerHTML =lokasi;
-                
+        <div class="input-section">
+            <select id="lokasi-select">
+                <option value="Yogyakarta">🏛️ Yogyakarta</option>
+                <option value="Jakarta">🏙️ Jakarta</option>
+                <option value="Bandung">🌄 Bandung</option>
+                <option value="Surabaya">🌊 Surabaya</option>
+                <option value="Bali">🏝️ Bali</option>
+            </select>
+            <button id="btn-get" onclick="getCuaca()">🔍 Get</button>
+        </div>
 
+        <div id="result">
+            <div class="section">
+                <h3>🌡️ Cuaca</h3>
+                <div class="temp-highlight" id="suhu"></div>
+                <div class="info-row">
+                    <span class="label">💧 Kelembapan:</span>
+                    <span class="value" id="kelembapan"></span>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3>📍 Lokasi</h3>
+                <div class="info-row">
+                    <span class="label">🌍 Negara:</span>
+                    <span class="value" id="negara"></span>
+                </div>
+                <div class="info-row">
+                    <span class="label">🗺️ Provinsi:</span>
+                    <span class="value" id="provinsi"></span>
+                </div>
+                <div class="info-row">
+                    <span class="label">📌 Kecamatan:</span>
+                    <span class="value" id="kecamatan"></span>
+                </div>
+                <div class="info-row">
+                    <span class="label">➡️ Longitude:</span>
+                    <span class="value" id="longitude"></span>
+                </div>
+                <div class="info-row">
+                    <span class="label">⬆️ Latitude:</span>
+                    <span class="value" id="latitude"></span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                },
-                fail : function (error){
-                    console.log(error);
-                },
-
-
-            })
-        </script>
-
-    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>
